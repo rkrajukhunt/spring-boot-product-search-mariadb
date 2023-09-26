@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Mariadb@123
+      MYSQL_DATABASE: product
+    networks:
+      - my-network
+
+  jdk17:
+    image: openjdk:17-jdk-slim
+    networks:
+      - my-network
+    # Define commands, volumes, etc., for your JDK container as needed
+
+networks:
+  my-network:
+    driver: bridge
