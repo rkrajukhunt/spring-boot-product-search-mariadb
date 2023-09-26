@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/product
+    username: root
+    password: Mariadb@123
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+      minimumIdle: 1
+      idleTimeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: update
+      driver: org.mariadb.jdbc.Driver
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+        format_sql: false
+        show_sql: true
