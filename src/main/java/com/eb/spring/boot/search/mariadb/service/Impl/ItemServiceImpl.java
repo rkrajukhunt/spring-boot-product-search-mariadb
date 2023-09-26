@@ -70,6 +70,7 @@ public class ItemServiceImpl implements IItemService {
 
     @Override
     public Page<Item> searchItems(String name, String description, String category, Integer stockQuantity, LocalDate manufactureDate, String sortBy, String sortDirection, Pageable pageable) {
+        int adjustedPage = pageable.getPageNumber() - 1;
         Specification<Item> spec = Specification.where(null);
 
         if (name != null) {
@@ -99,6 +100,7 @@ public class ItemServiceImpl implements IItemService {
 
         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
         pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+//        pageable = PageRequest.of(adjustedPage, pageable.getPageSize(), pageable.getSort());
 
         return itemRepository.findAll(spec, pageable);
     }
